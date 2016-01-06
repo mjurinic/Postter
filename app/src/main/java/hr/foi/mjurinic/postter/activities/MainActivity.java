@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     private void initTabs() {
         mainTabLayout.addTab(mainTabLayout.newTab().setText("NewsFeed"));
-        mainTabLayout.addTab(mainTabLayout.newTab().setText("Personal Messages"));
+        mainTabLayout.addTab(mainTabLayout.newTab().setText("Search"));
         mainTabLayout.addTab(mainTabLayout.newTab().setText("Trending"));
     }
 
