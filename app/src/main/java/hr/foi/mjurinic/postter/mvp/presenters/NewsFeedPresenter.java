@@ -8,5 +8,6 @@ import android.content.Context;
 public interface NewsFeedPresenter extends BasePresenter{
 
     void fetchFollowers(Context context);
+    void fetchNewsFeed();
 
 }
