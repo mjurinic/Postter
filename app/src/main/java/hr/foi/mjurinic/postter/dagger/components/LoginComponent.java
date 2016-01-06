@@ -1,7 +1,6 @@
 package hr.foi.mjurinic.postter.dagger.components;
 
 import dagger.Component;
-import hr.foi.mjurinic.postter.dagger.modules.AppContextModule;
 import hr.foi.mjurinic.postter.dagger.modules.CacheModule;
 import hr.foi.mjurinic.postter.dagger.modules.LoginModule;
 import hr.foi.mjurinic.postter.dagger.modules.NetworkModule;
