@@ -1,12 +1,11 @@
 package hr.foi.mjurinic.postter.network;
 
-import javax.inject.Qualifier;
-
 import hr.foi.mjurinic.postter.models.BaseResponse;
 import hr.foi.mjurinic.postter.models.FollowingResponse;
 import hr.foi.mjurinic.postter.models.NewsFeedResponse;
 
 import hr.foi.mjurinic.postter.models.BaseCouchResponse;
+import hr.foi.mjurinic.postter.models.Relationship;
 import hr.foi.mjurinic.postter.models.SecurityDoc;
 
 import hr.foi.mjurinic.postter.models.Session;
@@ -46,4 +45,9 @@ public interface ApiService {
     @PUT("/tbp_europe/_security")
     Call<BaseCouchResponse> updateSecurityDoc(@Header("Authorization") String token, @Body SecurityDoc securityDoc);
 
+    @GET("/_users/org.couchdb.user:{name}")
+    Call<User> getUser(@Header("Authorization") String token, @Path("name") String name);
+
+    @PUT("/tbp_europe/")
+    Call<BaseCouchResponse> putNewFollow(@Header("Authorization") String token, @Body Relationship relationship);
 }

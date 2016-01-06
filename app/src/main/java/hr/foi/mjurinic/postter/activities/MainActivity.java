@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 import hr.foi.mjurinic.postter.R;
 import hr.foi.mjurinic.postter.adapters.ViewPagerAdapter;
 import hr.foi.mjurinic.postter.fragments.NewsFeedFragment;
-import hr.foi.mjurinic.postter.fragments.PersonalMessagesFragment;
+import hr.foi.mjurinic.postter.fragments.SearchFragment;
 import hr.foi.mjurinic.postter.fragments.TrendingFragment;
 
 public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener{
@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         fragments = new ArrayList<>();
 
         fragments.add(new NewsFeedFragment());
-        fragments.add(new PersonalMessagesFragment());
+        fragments.add(new SearchFragment());
         fragments.add(new TrendingFragment());
     }
 
