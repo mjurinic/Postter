@@ -5,9 +5,8 @@ import android.content.Context;
 /**
  * Created by noxqs on 06.01.16..
  */
-public interface NewsFeedPresenter extends BasePresenter{
+public interface NewsFeedCommentsPresenter extends BasePresenter {
 
-    void fetchFollowers(Context context);
-    void fetchNewsFeed();
+    void fetchComments(Context context, String id);
 
 }

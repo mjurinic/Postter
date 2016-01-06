@@ -2,11 +2,16 @@ package hr.foi.mjurinic.postter.mvp.interactors.impl;
 
 import android.support.annotation.Nullable;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import hr.foi.mjurinic.postter.listeners.Listener;
+import hr.foi.mjurinic.postter.listeners.NewsFeedListener;
+import hr.foi.mjurinic.postter.models.BaseNewsFeedResponse;
 import hr.foi.mjurinic.postter.models.BaseResponse;
 import hr.foi.mjurinic.postter.models.FollowingResponse;
+import hr.foi.mjurinic.postter.models.NewsFeedResponse;
 import hr.foi.mjurinic.postter.mvp.interactors.NewsFeedInteractor;
 import hr.foi.mjurinic.postter.network.ApiService;
 import hr.foi.mjurinic.postter.network.BaseCallback;
@@ -22,8 +27,9 @@ public class NewsFeedInteractorImpl implements NewsFeedInteractor {
     private ApiService apiService;
 
     private Call<BaseResponse<FollowingResponse>> followingResponseCall;
-
     private BaseCallback<BaseResponse<FollowingResponse>> followingResponseBaseCallback;
+    private Call<BaseNewsFeedResponse<NewsFeedResponse>> newsFeedResponseCall;
+    private BaseCallback<BaseNewsFeedResponse<NewsFeedResponse>> newsFeedResponseCallback;
 
     @Inject
     public NewsFeedInteractorImpl(ApiService apiService) {
@@ -32,14 +38,18 @@ public class NewsFeedInteractorImpl implements NewsFeedInteractor {
 
     @Override
     public void cancel() {
-        if (followingResponseCall != null && followingResponseBaseCallback != null) {
+        if (followingResponseCall != null && followingResponseBaseCallback != null ) {
             followingResponseCall.cancel();
             followingResponseBaseCallback.cancel();
+            if(newsFeedResponseCall != null && newsFeedResponseCallback != null){
+                newsFeedResponseCall.cancel();
+                newsFeedResponseCallback.cancel();
+            }
         }
     }
 
     @Override
-    public void fetchNewsFeed(final Listener<FollowingResponse> listener, String token, String username) {
+    public void fetchFollowers(final Listener<FollowingResponse> listener, String token, String username) {
         followingResponseCall = apiService.fetchFollowers(token.trim(), '"' + ORG_COUCHDB_USER + username + '"');
 
         followingResponseBaseCallback = new BaseCallback<BaseResponse<FollowingResponse>>() {
@@ -57,5 +67,28 @@ public class NewsFeedInteractorImpl implements NewsFeedInteractor {
         followingResponseCall.enqueue(followingResponseBaseCallback);
     }
 
+    @Override
+    public void fetchNewsFeed(final NewsFeedListener<NewsFeedResponse> listener, String token, ArrayList<String> username) {
+        String usernames = "";
+        for(int i = 0; i<username.size();++i){
+            usernames += username.get(i) + ",";
+        }
+        usernames = usernames.substring(0, usernames.length() -1 );
+        newsFeedResponseCall = apiService.fetchNewsFeed(token.trim(), usernames);
+
+        newsFeedResponseCallback = new BaseCallback<BaseNewsFeedResponse<NewsFeedResponse>>() {
+            @Override
+            public void onUnknownError(@Nullable String error) {
+                listener.onFailure(error);
+            }
+
+            @Override
+            public void onSuccess(BaseNewsFeedResponse<NewsFeedResponse> body, Response<BaseNewsFeedResponse<NewsFeedResponse>> response) {
+                listener.onSuccess(body.getNewsFeedResponses());
+            }
+        };
+
+        newsFeedResponseCall.enqueue(newsFeedResponseCallback);
+    }
 
 }

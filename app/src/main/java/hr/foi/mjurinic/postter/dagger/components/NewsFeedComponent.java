@@ -1,7 +1,6 @@
 package hr.foi.mjurinic.postter.dagger.components;
 
 import dagger.Component;
-import hr.foi.mjurinic.postter.dagger.modules.CacheInstanceModule;
 import hr.foi.mjurinic.postter.dagger.modules.CacheModule;
 import hr.foi.mjurinic.postter.dagger.modules.NetworkModule;
 import hr.foi.mjurinic.postter.dagger.modules.NewsFeedModule;
