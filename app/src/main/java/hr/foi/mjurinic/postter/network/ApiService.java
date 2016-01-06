@@ -2,6 +2,7 @@ package hr.foi.mjurinic.postter.network;
 
 import javax.inject.Qualifier;
 
+import hr.foi.mjurinic.postter.models.BaseResponse;
 import hr.foi.mjurinic.postter.models.FollowingResponse;
 import hr.foi.mjurinic.postter.models.NewsFeedResponse;
 
@@ -31,7 +32,7 @@ public interface ApiService {
     Call<Session> login(@Body UserCredentials userCredentials);
 
     @GET("/tbp_europe/_design/designs/_list/pretty_following/following")
-    Call<FollowingResponse> fetchFollowers( @Header("Authorization") String token, @Query("key") String name);
+    Call<BaseResponse<FollowingResponse>> fetchFollowers( @Header("Authorization") String token, @Query("key") String name);
 
     @GET("/tbp_europe/_design/designs/_list/with_comment_count/post_and_comments?following={username}")
     Call<NewsFeedResponse> fetchNewsFeed(@Path("username") String username);

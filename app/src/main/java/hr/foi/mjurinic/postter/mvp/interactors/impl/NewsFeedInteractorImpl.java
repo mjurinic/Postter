@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import javax.inject.Inject;
 
 import hr.foi.mjurinic.postter.listeners.Listener;
+import hr.foi.mjurinic.postter.models.BaseResponse;
 import hr.foi.mjurinic.postter.models.FollowingResponse;
 import hr.foi.mjurinic.postter.mvp.interactors.NewsFeedInteractor;
 import hr.foi.mjurinic.postter.network.ApiService;
@@ -20,9 +21,9 @@ public class NewsFeedInteractorImpl implements NewsFeedInteractor {
     public static final String ORG_COUCHDB_USER = "org.couchdb.user:";
     private ApiService apiService;
 
-    private Call<FollowingResponse> followingResponseCall;
+    private Call<BaseResponse<FollowingResponse>> followingResponseCall;
 
-    private BaseCallback<FollowingResponse> followingResponseBaseCallback;
+    private BaseCallback<BaseResponse<FollowingResponse>> followingResponseBaseCallback;
 
     @Inject
     public NewsFeedInteractorImpl(ApiService apiService) {
@@ -41,15 +42,15 @@ public class NewsFeedInteractorImpl implements NewsFeedInteractor {
     public void fetchNewsFeed(final Listener<FollowingResponse> listener, String token, String username) {
         followingResponseCall = apiService.fetchFollowers(token.trim(), '"' + ORG_COUCHDB_USER + username + '"');
 
-        followingResponseBaseCallback = new BaseCallback<FollowingResponse>() {
+        followingResponseBaseCallback = new BaseCallback<BaseResponse<FollowingResponse>>() {
             @Override
             public void onUnknownError(@Nullable String error) {
                 listener.onFailure(error);
             }
 
             @Override
-            public void onSuccess(FollowingResponse body, Response<FollowingResponse> response) {
-                listener.onSuccess(body);
+            public void onSuccess(BaseResponse<FollowingResponse> body, Response<BaseResponse<FollowingResponse>> response) {
+                listener.onSuccess(body.getResponse());
             }
         };
 
