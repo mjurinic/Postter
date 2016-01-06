@@ -1,17 +1,23 @@
 package hr.foi.mjurinic.postter.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import hr.foi.mjurinic.postter.R;
+import hr.foi.mjurinic.postter.adapters.NewsFeedAdapter;
 import hr.foi.mjurinic.postter.dagger.components.DaggerNewsFeedComponent;
 import hr.foi.mjurinic.postter.dagger.modules.NewsFeedModule;
 import hr.foi.mjurinic.postter.models.FollowingResponse;
@@ -22,16 +28,20 @@ import hr.foi.mjurinic.postter.mvp.views.NewsFeedView;
 /**
  * Created by noxqs on 06.01.16..
  */
-public class NewsFeedFragment extends BaseFragment implements NewsFeedView{
+public class NewsFeedFragment extends BaseFragment implements NewsFeedView {
 
     @Inject
     NewsFeedPresenter presenter;
+
+    @Bind(R.id.news_feed_recyclerview)
+    RecyclerView newsFeedRecyclerview;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_news_feed, container, false);
+        ButterKnife.bind(this, view);
 
         DaggerNewsFeedComponent.builder()
                 .newsFeedModule(new NewsFeedModule(this))
@@ -40,12 +50,16 @@ public class NewsFeedFragment extends BaseFragment implements NewsFeedView{
 
         presenter.fetchFollowers(getActivity());
 
+        newsFeedRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
         return view;
     }
 
     @Override
     public void onFollowersFetched(FollowingResponse followingResponses) {
-        Log.e("PENIS", followingResponses.getUserId());
+        Log.e("Followers", "FETCHED");
+        presenter.fetchNewsFeed();
     }
 
     @Override
@@ -54,12 +68,19 @@ public class NewsFeedFragment extends BaseFragment implements NewsFeedView{
     }
 
     @Override
-    public void onNewsFeedFetched(NewsFeedResponse newsFeedResponse) {
-
+    public void onNewsFeedFetched(ArrayList<NewsFeedResponse> newsFeedResponse) {
+        newsFeedRecyclerview.setAdapter(new NewsFeedAdapter(newsFeedResponse));
     }
 
     @Override
     public void onNewsFeedError(String error) {
+        Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+        Log.e("Error", error);
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }
