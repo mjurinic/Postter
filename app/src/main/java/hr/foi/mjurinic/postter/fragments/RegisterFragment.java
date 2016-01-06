@@ -65,17 +65,11 @@ public class RegisterFragment extends BaseFragment implements RegisterView {
 
     @OnClick(R.id.btn_register)
     public void onRegisterClick() {
-//        String firstName = etFirstName.getText().toString();
-//        String lastName = etLastName.getText().toString();
-//        String name = etName.getText().toString();
-//        String password = etPassword.getText().toString();
-//        String email = etEmail.getText().toString();
-
-        String firstName = "Krešimir";
-        String lastName = "Valjevac";
-        String name = "kvaljeva";
-        String password = "123456";
-        String email = "kvaljeva@foi.hr";
+        String firstName = etFirstName.getText().toString();
+        String lastName = etLastName.getText().toString();
+        String name = etName.getText().toString();
+        String password = etPassword.getText().toString();
+        String email = etEmail.getText().toString();
 
         registerPresenter.registerUser(new User(firstName, lastName, name, password, email));
     }
