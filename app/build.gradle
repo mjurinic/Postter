@@ -17,6 +17,9 @@ android {
     def API_URL_EU = 'API_URL_EU'
     def API_URL_US = 'API_URL_US'
     def API_URL_ASIA = 'API_URL_ASIA'
+    def EU_DB = "EU_DB"
+    def US_DB = "US_DB"
+    def ASIA_DB = "ASIA_DB"
 
     buildTypes {
         release {
@@ -29,8 +32,13 @@ android {
         production {
             dimension 'api'
             buildConfigField STRING, API_URL_EU, '"http://46.101.213.160:5984/"'
+            buildConfigField STRING, EU_DB, '"tbp_europe"'
+
             buildConfigField STRING, API_URL_US, '"http://159.203.218.247:5984/"'
+            buildConfigField STRING, US_DB, '"tbp_us-west"'
+
             buildConfigField STRING, API_URL_ASIA, '"http://188.166.212.19:5984/"'
+            buildConfigField STRING, ASIA_DB, '"tbp_asia"'
         }
     }
 
