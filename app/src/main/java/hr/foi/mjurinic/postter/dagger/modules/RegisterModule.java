@@ -2,10 +2,8 @@ package hr.foi.mjurinic.postter.dagger.modules;
 
 import dagger.Module;
 import dagger.Provides;
-import hr.foi.mjurinic.postter.mvp.interactors.CacheInteractor;
 import hr.foi.mjurinic.postter.mvp.interactors.LoginInteractor;
 import hr.foi.mjurinic.postter.mvp.interactors.RegisterInteractor;
-import hr.foi.mjurinic.postter.mvp.interactors.impl.CacheInteractorImpl;
 import hr.foi.mjurinic.postter.mvp.interactors.impl.LoginInteractorImpl;
 import hr.foi.mjurinic.postter.mvp.interactors.impl.RegisterInteractorImpl;
 import hr.foi.mjurinic.postter.mvp.presenters.RegisterPresenter;
