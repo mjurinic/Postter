@@ -2,6 +2,8 @@ package hr.foi.mjurinic.postter.mvp.interactors.impl;
 
 import android.support.annotation.Nullable;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import hr.foi.mjurinic.postter.listeners.Listener;
@@ -66,8 +68,13 @@ public class NewsFeedInteractorImpl implements NewsFeedInteractor {
     }
 
     @Override
-    public void fetchNewsFeed(final NewsFeedListener<NewsFeedResponse> listener, String token, String username) {
-        newsFeedResponseCall = apiService.fetchNewsFeed(token.trim(), username);
+    public void fetchNewsFeed(final NewsFeedListener<NewsFeedResponse> listener, String token, ArrayList<String> username) {
+        String usernames = "";
+        for(int i = 0; i<username.size();++i){
+            usernames += username.get(i) + ",";
+        }
+        usernames = usernames.substring(0, usernames.length() -1 );
+        newsFeedResponseCall = apiService.fetchNewsFeed(token.trim(), usernames);
 
         newsFeedResponseCallback = new BaseCallback<BaseNewsFeedResponse<NewsFeedResponse>>() {
             @Override
@@ -83,6 +90,5 @@ public class NewsFeedInteractorImpl implements NewsFeedInteractor {
 
         newsFeedResponseCall.enqueue(newsFeedResponseCallback);
     }
-
 
 }

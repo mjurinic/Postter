@@ -32,6 +32,8 @@ public class NewsFeedPresenterImpl implements NewsFeedPresenter {
 
     private String username;
 
+    ArrayList<String> users = new ArrayList<>();
+
     @Inject
     public NewsFeedPresenterImpl(NewsFeedView view, NewsFeedInteractor interactor, CacheInteractor cacheInteractor) {
         this.view = view;
@@ -51,12 +53,13 @@ public class NewsFeedPresenterImpl implements NewsFeedPresenter {
         }
 
         base64 = "Basic " + base64;
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString("BASE64", base64).apply();
         interactor.fetchFollowers(followingResponseListener, base64, username);
     }
 
     @Override
     public void fetchNewsFeed() {
-        interactor.fetchNewsFeed(newsFeedResponseListener, base64, username);
+        interactor.fetchNewsFeed(newsFeedResponseListener, base64, users);
     }
 
     @Override
@@ -67,6 +70,10 @@ public class NewsFeedPresenterImpl implements NewsFeedPresenter {
     private Listener<FollowingResponse> followingResponseListener = new Listener<FollowingResponse>() {
         @Override
         public void onSuccess(FollowingResponse followingResponse) {
+            for (int i = 0; i < followingResponse.getFollowing().size(); ++i) {
+                String[] usernames = followingResponse.getFollowing().get(i).split(":");
+                users.add(usernames[1]);
+            }
             view.onFollowersFetched(followingResponse);
         }
 

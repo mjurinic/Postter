@@ -1,15 +1,13 @@
 package hr.foi.mjurinic.postter.network;
 
-import javax.inject.Qualifier;
-
+import hr.foi.mjurinic.postter.models.BaseCouchResponse;
 import hr.foi.mjurinic.postter.models.BaseNewsFeedResponse;
 import hr.foi.mjurinic.postter.models.BaseResponse;
+import hr.foi.mjurinic.postter.models.Comments;
 import hr.foi.mjurinic.postter.models.FollowingResponse;
+import hr.foi.mjurinic.postter.models.NewsFeedCommentsResponse;
 import hr.foi.mjurinic.postter.models.NewsFeedResponse;
-
-import hr.foi.mjurinic.postter.models.BaseCouchResponse;
 import hr.foi.mjurinic.postter.models.SecurityDoc;
-
 import hr.foi.mjurinic.postter.models.Session;
 import hr.foi.mjurinic.postter.models.User;
 import hr.foi.mjurinic.postter.models.UserCredentials;
@@ -18,10 +16,9 @@ import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.Header;
 import retrofit.http.POST;
+import retrofit.http.PUT;
 import retrofit.http.Path;
 import retrofit.http.Query;
-
-import retrofit.http.PUT;
 
 
 /**
@@ -46,5 +43,8 @@ public interface ApiService {
 
     @PUT("/tbp_europe/_security")
     Call<BaseCouchResponse> updateSecurityDoc(@Header("Authorization") String token, @Body SecurityDoc securityDoc);
+
+    @GET("/tbp_europe/_design/designs/_list/filter_by_post_id/post_and_comments")
+    Call<BaseNewsFeedResponse<NewsFeedCommentsResponse>> fetchComments(@Header("Authorization") String token, @Query("post_id") String id);
 
 }

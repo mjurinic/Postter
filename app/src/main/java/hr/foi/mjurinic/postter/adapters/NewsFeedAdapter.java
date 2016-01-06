@@ -1,6 +1,5 @@
 package hr.foi.mjurinic.postter.adapters;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import hr.foi.mjurinic.postter.R;
+import hr.foi.mjurinic.postter.listeners.NewsFeedClickListener;
 import hr.foi.mjurinic.postter.models.NewsFeedResponse;
 
 /**
@@ -23,8 +23,11 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.ViewHo
 
     private ArrayList<NewsFeedResponse> newsFeedResponses;
 
-    public NewsFeedAdapter(ArrayList<NewsFeedResponse> newsFeedResponses) {
+    private NewsFeedClickListener newsFeedClickListener;
+
+    public NewsFeedAdapter(ArrayList<NewsFeedResponse> newsFeedResponses, NewsFeedClickListener newsFeedClickListener) {
         this.newsFeedResponses = newsFeedResponses;
+        this.newsFeedClickListener = newsFeedClickListener;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.fullName.setText(newsFeedResponses.get(position).getFullName());
 
         holder.commentsCount.setText(newsFeedResponses.get(position).getCommentsCount() + "");
@@ -44,6 +47,13 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.ViewHo
         holder.createdAt.setText(newsFeedResponses.get(position).getCreatedAt());
 
         holder.description.setText(newsFeedResponses.get(position).getBody());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newsFeedClickListener.onNewsFeedItemClick(newsFeedResponses.get(position));
+            }
+        });
     }
 
     @Override

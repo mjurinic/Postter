@@ -2,17 +2,14 @@ package hr.foi.mjurinic.postter.mvp.presenters.impl;
 
 import android.content.res.Resources;
 import android.util.Base64;
-import android.util.Log;
 
 import javax.inject.Inject;
 
 import hr.foi.mjurinic.postter.BuildConfig;
 import hr.foi.mjurinic.postter.R;
 import hr.foi.mjurinic.postter.listeners.Listener;
-import hr.foi.mjurinic.postter.listeners.LoginListener;
 import hr.foi.mjurinic.postter.models.BaseCouchResponse;
 import hr.foi.mjurinic.postter.models.SecurityDoc;
-import hr.foi.mjurinic.postter.models.Session;
 import hr.foi.mjurinic.postter.models.User;
 import hr.foi.mjurinic.postter.mvp.interactors.CacheInteractor;
 import hr.foi.mjurinic.postter.mvp.interactors.LoginInteractor;

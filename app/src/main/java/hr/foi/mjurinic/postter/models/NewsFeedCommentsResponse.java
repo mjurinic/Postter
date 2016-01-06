@@ -2,13 +2,12 @@ package hr.foi.mjurinic.postter.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by noxqs on 06.01.16..
  */
-public class NewsFeedResponse implements Serializable {
+public class NewsFeedCommentsResponse {
 
     @SerializedName("id")
     private String id;
@@ -28,8 +27,8 @@ public class NewsFeedResponse implements Serializable {
     @SerializedName("tags")
     private ArrayList<String> tags;
 
-    @SerializedName("comments_count")
-    private int commentsCount;
+    @SerializedName("comments")
+    private ArrayList<Comments> comments;
 
     public String getId() {
         return id;
@@ -71,12 +70,12 @@ public class NewsFeedResponse implements Serializable {
         this.tags = tags;
     }
 
-    public int getCommentsCount() {
-        return commentsCount;
+    public ArrayList<Comments> getComments() {
+        return comments;
     }
 
-    public void setCommentsCount(int commentsCount) {
-        this.commentsCount = commentsCount;
+    public void setComments(ArrayList<Comments> comments) {
+        this.comments = comments;
     }
 
     public String getFullName() {
