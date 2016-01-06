@@ -48,6 +48,6 @@ public interface ApiService {
     @GET("/_users/org.couchdb.user:{name}")
     Call<User> getUser(@Header("Authorization") String token, @Path("name") String name);
 
-    @PUT("/tbp_europe/")
+    @POST("/tbp_europe/")
     Call<BaseCouchResponse> putNewFollow(@Header("Authorization") String token, @Body Relationship relationship);
 }

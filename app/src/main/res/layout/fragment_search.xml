@@ -30,4 +30,12 @@
         android:text="User not found :("
         android:textSize="24sp" />
 
+    <include
+        android:id="@+id/search_card_included"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_search_name"
+        layout="@layout/search_profile_item"/>
+
 </RelativeLayout>
