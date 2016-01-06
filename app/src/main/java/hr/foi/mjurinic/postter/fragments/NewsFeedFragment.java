@@ -45,7 +45,7 @@ public class NewsFeedFragment extends BaseFragment implements NewsFeedView{
 
     @Override
     public void onFollowersFetched(FollowingResponse followingResponses) {
-        Log.e("PENIS", followingResponses.getFollowing().get(0));
+        Log.e("PENIS", followingResponses.getUserId());
     }
 
     @Override
