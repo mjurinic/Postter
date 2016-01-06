@@ -5,6 +5,7 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import hr.foi.mjurinic.postter.dagger.components.DaggerAppComponent;
+import hr.foi.mjurinic.postter.mvp.interactors.CacheInteractor;
 import hr.foi.mjurinic.postter.network.ApiService;
 
 /**
@@ -17,8 +18,8 @@ public class PostterApp extends Application {
     @Inject
     protected ApiService apiService;
 
-//    @Inject
-//    protected CacheInteractor cacheInteractor;
+    @Inject
+    protected CacheInteractor cacheInteractor;
 
     public static PostterApp getInstance() {
         return instance;
@@ -39,8 +40,8 @@ public class PostterApp extends Application {
     public ApiService getApiService() {
         return apiService;
     }
-//
-//    public CacheInteractor getCacheInteractor() {
-//        return cacheInteractor;
-//    }
+
+    public CacheInteractor getCacheInteractor() {
+        return cacheInteractor;
+    }
 }

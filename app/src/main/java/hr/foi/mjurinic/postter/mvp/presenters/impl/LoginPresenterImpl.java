@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import hr.foi.mjurinic.postter.listeners.LoginListener;
 import hr.foi.mjurinic.postter.models.Session;
+import hr.foi.mjurinic.postter.models.User;
+import hr.foi.mjurinic.postter.mvp.interactors.CacheInteractor;
 import hr.foi.mjurinic.postter.mvp.interactors.LoginInteractor;
 import hr.foi.mjurinic.postter.mvp.presenters.LoginPresenter;
 import hr.foi.mjurinic.postter.mvp.views.LoginView;
@@ -15,15 +17,15 @@ import hr.foi.mjurinic.postter.mvp.views.LoginView;
  */
 public class LoginPresenterImpl implements LoginPresenter, LoginListener {
 
-    public static String TOKEN = "token";
-
     private LoginView loginView;
     private LoginInteractor loginInteractor;
+    private CacheInteractor cacheInteractor;
 
     @Inject
-    public LoginPresenterImpl(LoginView loginView, LoginInteractor loginInteractor) {
+    public LoginPresenterImpl(LoginView loginView, LoginInteractor loginInteractor, CacheInteractor cacheInteractor) {
         this.loginView = loginView;
         this.loginInteractor = loginInteractor;
+        this.cacheInteractor = cacheInteractor;
     }
 
     @Override
@@ -41,7 +43,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginListener {
     public void onSuccess(Session session, String token) {
         loginView.hideProgress();
 
-        Log.d("DEBUG", "Token: " + token);
+        cacheInteractor.cacheUser(new User(session.getName(), token.split(";")[0].split("=")[1]));
 
         loginView.onSuccess();
     }

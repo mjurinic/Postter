@@ -6,6 +6,7 @@ import dagger.Component;
 import hr.foi.mjurinic.postter.PostterApp;
 import hr.foi.mjurinic.postter.dagger.modules.ApiModule;
 import hr.foi.mjurinic.postter.dagger.modules.AppContextModule;
+import hr.foi.mjurinic.postter.dagger.modules.CacheInstanceModule;
 import hr.foi.mjurinic.postter.dagger.modules.ClientModule;
 import hr.foi.mjurinic.postter.dagger.modules.GsonConverterModule;
 import hr.foi.mjurinic.postter.dagger.modules.HostModule;
@@ -19,6 +20,7 @@ import hr.foi.mjurinic.postter.dagger.modules.NetworkModule;
         HostModule.class,
         ClientModule.class,
         GsonConverterModule.class,
+        CacheInstanceModule.class,
         ApiModule.class
 })
 @Singleton

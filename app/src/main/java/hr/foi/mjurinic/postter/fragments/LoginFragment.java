@@ -1,12 +1,11 @@
 package hr.foi.mjurinic.postter.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -14,6 +13,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hr.foi.mjurinic.postter.R;
+import hr.foi.mjurinic.postter.activities.MainActivity;
 import hr.foi.mjurinic.postter.dagger.components.DaggerLoginComponent;
 import hr.foi.mjurinic.postter.dagger.modules.LoginModule;
 import hr.foi.mjurinic.postter.mvp.presenters.LoginPresenter;
@@ -57,6 +57,8 @@ public class LoginFragment extends BaseFragment implements LoginView {
 
     @Override
     public void onSuccess() {
-        Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT);
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 }

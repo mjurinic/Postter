@@ -39,7 +39,7 @@ public class LoginInteractorImpl implements LoginInteractor {
 
             @Override
             public void onSuccess(Session body, Response<Session> response) {
-                listener.onSuccess(body, response.headers().get("AuthSession"));
+                listener.onSuccess(body, response.headers().get("Set-Cookie"));
             }
         };
 
