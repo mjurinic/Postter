@@ -33,6 +33,10 @@ android {
             buildConfigField STRING, API_URL_ASIA, '"http://188.166.212.19:5984/"'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+    }
 }
 
 dependencies {

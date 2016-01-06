@@ -4,6 +4,7 @@ import android.app.Application;
 
 import javax.inject.Inject;
 
+import hr.foi.mjurinic.postter.dagger.components.DaggerAppComponent;
 import hr.foi.mjurinic.postter.network.ApiService;
 
 /**
@@ -32,7 +33,7 @@ public class PostterApp extends Application {
         super.onCreate();
         setInstance(this);
 
-        //DaggerAppComponent.create().inject(this);
+        DaggerAppComponent.create().inject(this);
     }
 
     public ApiService getApiService() {

@@ -12,7 +12,7 @@ import hr.foi.mjurinic.postter.network.ApiService;
 public class NetworkModule {
 
     @Provides
-    public ApiService provideApiServer() {
+    public ApiService provideApiService() {
         return PostterApp.getInstance().getApiService();
     }
 }
