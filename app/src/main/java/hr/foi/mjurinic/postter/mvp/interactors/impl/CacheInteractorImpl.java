@@ -4,6 +4,7 @@ import android.util.LruCache;
 
 import javax.inject.Inject;
 
+import hr.foi.mjurinic.postter.models.SecurityDoc;
 import hr.foi.mjurinic.postter.models.User;
 import hr.foi.mjurinic.postter.mvp.interactors.CacheInteractor;
 
@@ -12,8 +13,10 @@ import hr.foi.mjurinic.postter.mvp.interactors.CacheInteractor;
  */
 public class CacheInteractorImpl implements CacheInteractor {
 
-    private static final int CACHE_SIZE = 1 * 1024; // in number of items not in bytes
+    private static final int CACHE_SIZE = 2 * 1024; // in number of items not in bytes
+
     public static final String USER = "token";
+    public static final String DOC = "doc";
 
     private volatile LruCache<String, Object> lruCache;
 
@@ -37,7 +40,20 @@ public class CacheInteractorImpl implements CacheInteractor {
     }
 
     @Override
+
     public User getUser() {
         return (User) getCache(USER);
     }
+
+    @Override
+    public void cacheSecurityDoc(SecurityDoc securityDoc) {
+        setCache(DOC, securityDoc);
+    }
+
+    @Override
+    public SecurityDoc getSecurityDoc() {
+        return (SecurityDoc) getCache(DOC);
+    }
+
+
 }
