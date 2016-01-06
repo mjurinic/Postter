@@ -17,6 +17,7 @@ import retrofit.Response;
  */
 public class NewsFeedInteractorImpl implements NewsFeedInteractor {
 
+    public static final String ORG_COUCHDB_USER = "org.couchdb.user:";
     private ApiService apiService;
 
     private Call<FollowingResponse> followingResponseCall;
@@ -38,7 +39,7 @@ public class NewsFeedInteractorImpl implements NewsFeedInteractor {
 
     @Override
     public void fetchNewsFeed(final Listener<FollowingResponse> listener, String token, String username) {
-        followingResponseCall = apiService.fetchFollowers(token, username);
+        followingResponseCall = apiService.fetchFollowers(token.trim(), '"' + ORG_COUCHDB_USER + username + '"');
 
         followingResponseBaseCallback = new BaseCallback<FollowingResponse>() {
             @Override
