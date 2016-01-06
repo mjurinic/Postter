@@ -1,9 +1,9 @@
 package hr.foi.mjurinic.postter.fragments;
 
-import android.text.Html;
-
 import com.afollestad.materialdialogs.AlertDialogWrapper;
 import com.afollestad.materialdialogs.MaterialDialog;
+
+import android.text.Html;
 
 import hr.foi.mjurinic.postter.R;
 import hr.foi.mjurinic.postter.activities.BaseActivity;

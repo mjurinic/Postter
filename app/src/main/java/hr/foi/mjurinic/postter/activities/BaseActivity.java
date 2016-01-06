@@ -1,11 +1,11 @@
 package hr.foi.mjurinic.postter.activities;
 
+import com.afollestad.materialdialogs.AlertDialogWrapper;
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-
-import com.afollestad.materialdialogs.AlertDialogWrapper;
-import com.afollestad.materialdialogs.MaterialDialog;
 
 import hr.foi.mjurinic.postter.R;
 import hr.foi.mjurinic.postter.mvp.views.BaseView;

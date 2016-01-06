@@ -1,8 +1,8 @@
 package hr.foi.mjurinic.postter.network;
 
-import android.support.annotation.Nullable;
-
 import com.squareup.okhttp.ResponseBody;
+
+import android.support.annotation.Nullable;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;

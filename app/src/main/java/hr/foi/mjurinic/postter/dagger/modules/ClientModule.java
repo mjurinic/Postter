@@ -1,6 +1,9 @@
 package hr.foi.mjurinic.postter.dagger.modules;
 
 import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.logging.HttpLoggingInterceptor;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
@@ -17,6 +20,10 @@ public class ClientModule {
     @Singleton
     public OkHttpClient provideClient() {
         OkHttpClient client = new OkHttpClient();
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        client.interceptors().add(interceptor);
+        client.setReadTimeout(60, TimeUnit.SECONDS);
 
         return client;
     }
