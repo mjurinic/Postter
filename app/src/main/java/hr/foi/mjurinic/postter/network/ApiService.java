@@ -30,8 +30,8 @@ public interface ApiService {
     @POST("/_session")
     Call<Session> login(@Body UserCredentials userCredentials);
 
-    @GET("/tbp_europe/_design/designs/_list/pretty_following/following?key=\"org.coucbdb.user:{name}\"")
-    Call<FollowingResponse> fetchFollowers( @Header("Authorization") String token, @Path("name") String name);
+    @GET("/tbp_europe/_design/designs/_list/pretty_following/following")
+    Call<FollowingResponse> fetchFollowers( @Header("Authorization") String token, @Query("key") String name);
 
     @GET("/tbp_europe/_design/designs/_list/with_comment_count/post_and_comments?following={username}")
     Call<NewsFeedResponse> fetchNewsFeed(@Path("username") String username);
