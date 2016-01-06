@@ -56,6 +56,10 @@ public class StartActivity extends BaseActivity implements TabLayout.OnTabSelect
         fragments.add(new RegisterFragment());
     }
 
+    public void switchToLogin() {
+        viewPager.setCurrentItem(0);
+    }
+
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());

@@ -1,7 +1,5 @@
 package hr.foi.mjurinic.postter.mvp.presenters.impl;
 
-import android.util.Log;
-
 import javax.inject.Inject;
 
 import hr.foi.mjurinic.postter.listeners.LoginListener;
@@ -43,7 +41,7 @@ public class LoginPresenterImpl implements LoginPresenter, LoginListener {
     public void onSuccess(Session session, String token) {
         loginView.hideProgress();
 
-        cacheInteractor.cacheUser(new User(session.getName(), token.split(";")[0].split("=")[1]));
+        cacheInteractor.cacheUser(new User(session.getName(), token));
 
         loginView.onSuccess();
     }
