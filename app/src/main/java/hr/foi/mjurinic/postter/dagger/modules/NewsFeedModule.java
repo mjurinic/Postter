@@ -9,7 +9,7 @@ import hr.foi.mjurinic.postter.mvp.presenters.impl.NewsFeedPresenterImpl;
 import hr.foi.mjurinic.postter.mvp.views.NewsFeedView;
 
 /**
- * Created by noxqs on 06.01.16..
+ * Created by mjurinic on 06.01.16..
  */
 @Module
 public class NewsFeedModule {

@@ -7,7 +7,7 @@ import hr.foi.mjurinic.postter.dagger.modules.NewsFeedModule;
 import hr.foi.mjurinic.postter.fragments.NewsFeedFragment;
 
 /**
- * Created by noxqs on 06.01.16..
+ * Created by mjurinic on 06.01.16..
  */
 @Component(modules = {
         NetworkModule.class,

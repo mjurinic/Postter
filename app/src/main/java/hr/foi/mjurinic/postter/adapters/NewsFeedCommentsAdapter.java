@@ -14,7 +14,7 @@ import hr.foi.mjurinic.postter.R;
 import hr.foi.mjurinic.postter.models.Comments;
 
 /**
- * Created by noxqs on 06.01.16..
+ * Created by mjurinic on 06.01.16..
  */
 public class NewsFeedCommentsAdapter extends RecyclerView.Adapter<NewsFeedCommentsAdapter.ViewHolder> {
 

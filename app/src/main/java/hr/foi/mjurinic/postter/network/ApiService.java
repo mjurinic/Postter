@@ -6,6 +6,7 @@ import hr.foi.mjurinic.postter.models.FollowingResponse;
 import hr.foi.mjurinic.postter.models.NewsFeedCommentsResponse;
 import hr.foi.mjurinic.postter.models.NewsFeedResponse;
 import hr.foi.mjurinic.postter.models.BaseCouchResponse;
+import hr.foi.mjurinic.postter.models.Post;
 import hr.foi.mjurinic.postter.models.Relationship;
 import hr.foi.mjurinic.postter.models.SecurityDoc;
 import hr.foi.mjurinic.postter.models.Session;
@@ -50,6 +51,9 @@ public interface ApiService {
 
     @POST("/tbp_europe/")
     Call<BaseCouchResponse> putNewFollow(@Header("Authorization") String token, @Body Relationship relationship);
+
+    @POST("/tbp_europe/")
+    Call<BaseCouchResponse> postNewPost(@Header("Authorization") String token, @Body Post post);
 
     @GET("/tbp_europe/_design/designs/_list/filter_by_post_id/post_and_comments")
     Call<BaseNewsFeedResponse<NewsFeedCommentsResponse>> fetchComments(@Header("Authorization") String token, @Query("post_id") String id);

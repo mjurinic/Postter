@@ -16,7 +16,7 @@ import hr.foi.mjurinic.postter.listeners.NewsFeedClickListener;
 import hr.foi.mjurinic.postter.models.NewsFeedResponse;
 
 /**
- * Created by noxqs on 06.01.16..
+ * Created by mjurinic on 06.01.16..
  */
 public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.ViewHolder> {
 

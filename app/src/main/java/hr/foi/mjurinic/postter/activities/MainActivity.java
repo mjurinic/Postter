@@ -14,7 +14,7 @@ import hr.foi.mjurinic.postter.R;
 import hr.foi.mjurinic.postter.adapters.ViewPagerAdapter;
 import hr.foi.mjurinic.postter.fragments.NewsFeedFragment;
 import hr.foi.mjurinic.postter.fragments.SearchFragment;
-import hr.foi.mjurinic.postter.fragments.TrendingFragment;
+import hr.foi.mjurinic.postter.fragments.NewPostFragment;
 
 public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener{
 
@@ -47,13 +47,14 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
         fragments.add(new NewsFeedFragment());
         fragments.add(new SearchFragment());
-        fragments.add(new TrendingFragment());
+        fragments.add(new NewPostFragment());
     }
 
     private void initTabs() {
         mainTabLayout.addTab(mainTabLayout.newTab().setText("NewsFeed"));
         mainTabLayout.addTab(mainTabLayout.newTab().setText("Search"));
-        mainTabLayout.addTab(mainTabLayout.newTab().setText("Trending"));
+        mainTabLayout.addTab(mainTabLayout.newTab().setText("New Post"));
+//        mainTabLayout.addTab(mainTabLayout.newTab().setText("My Posts"));
     }
 
     @Override

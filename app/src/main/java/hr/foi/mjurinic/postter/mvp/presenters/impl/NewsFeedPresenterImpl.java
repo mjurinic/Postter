@@ -18,7 +18,7 @@ import hr.foi.mjurinic.postter.mvp.presenters.NewsFeedPresenter;
 import hr.foi.mjurinic.postter.mvp.views.NewsFeedView;
 
 /**
- * Created by noxqs on 06.01.16..
+ * Created by mjurinic on 06.01.16..
  */
 public class NewsFeedPresenterImpl implements NewsFeedPresenter {
 
