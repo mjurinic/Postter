@@ -46,4 +46,36 @@ public class Post implements Serializable {
         active = true;
         // fulle name?...
     }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getAuthor_id() {
+        return author_id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public DateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
 }

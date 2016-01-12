@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/micro_spacing"
     android:layout_marginLeft="@dimen/micro_spacing"
     android:layout_marginRight="@dimen/micro_spacing"
+    android:layout_marginTop="@dimen/micro_spacing"
     android:background="@android:color/white"
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/news_feed_icon"
+        android:id="@+id/my_post_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/default_spacing"
@@ -19,11 +19,11 @@
         android:src="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/full_name"
+        android:id="@+id/my_post_full_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_spacing"
-        android:layout_toRightOf="@+id/news_feed_icon"
+        android:layout_toRightOf="@+id/my_post_avatar"
         android:paddingBottom="@dimen/no_spacing"
         android:paddingLeft="@dimen/micro_spacing"
         android:paddingRight="@dimen/micro_spacing"
@@ -31,7 +31,7 @@
         tools:text="Mislav Juuuur" />
 
     <TextView
-        android:id="@+id/created_at"
+        android:id="@+id/my_post_created_at"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -40,34 +40,23 @@
         tools:text="20 mins ago" />
 
     <TextView
-        android:id="@+id/nick"
+        android:id="@+id/my_post_nick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/full_name"
-        android:layout_toRightOf="@+id/news_feed_icon"
+        android:layout_below="@+id/my_post_full_name"
+        android:layout_toRightOf="@+id/my_post_avatar"
         android:paddingLeft="@dimen/micro_spacing"
         android:paddingRight="@dimen/micro_spacing"
         android:textColor="@android:color/holo_blue_light"
         tools:text="\@mjurinic" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/my_post_body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/nick"
-        android:layout_toRightOf="@+id/news_feed_icon"
+        android:layout_below="@+id/my_post_nick"
+        android:layout_toRightOf="@+id/my_post_avatar"
         android:padding="@dimen/micro_spacing"
-        tools:text="lkadfg agla fgnalkn a" />
-
-    <TextView
-        android:id="@+id/comments_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/description"
-        android:layout_toRightOf="@+id/news_feed_icon"
-        android:paddingLeft="@dimen/micro_spacing"
-        android:paddingRight="@dimen/micro_spacing"
-        android:paddingBottom="@dimen/micro_spacing"
-        tools:text="25 comments" />
+        tools:text="Hello world Hello world..." />
 
 </RelativeLayout>

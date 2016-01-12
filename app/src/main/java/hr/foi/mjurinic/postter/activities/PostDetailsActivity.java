@@ -22,7 +22,7 @@ import hr.foi.mjurinic.postter.models.NewsFeedResponse;
 import hr.foi.mjurinic.postter.mvp.presenters.NewsFeedCommentsPresenter;
 import hr.foi.mjurinic.postter.mvp.views.NewsFeedCommentsView;
 
-public class NewsFeedItemDetailsActivity extends BaseActivity implements NewsFeedCommentsView {
+public class PostDetailsActivity extends BaseActivity implements NewsFeedCommentsView {
 
     @Inject
     NewsFeedCommentsPresenter presenter;

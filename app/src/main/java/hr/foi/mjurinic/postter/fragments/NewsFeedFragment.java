@@ -18,7 +18,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import hr.foi.mjurinic.postter.R;
-import hr.foi.mjurinic.postter.activities.NewsFeedItemDetailsActivity;
+import hr.foi.mjurinic.postter.activities.PostDetailsActivity;
 import hr.foi.mjurinic.postter.adapters.NewsFeedAdapter;
 import hr.foi.mjurinic.postter.dagger.components.DaggerNewsFeedComponent;
 import hr.foi.mjurinic.postter.dagger.modules.NewsFeedModule;
@@ -38,7 +38,6 @@ public class NewsFeedFragment extends BaseFragment implements NewsFeedView, News
 
     @Bind(R.id.news_feed_recyclerview)
     RecyclerView newsFeedRecyclerview;
-
 
     @Nullable
     @Override
@@ -90,7 +89,7 @@ public class NewsFeedFragment extends BaseFragment implements NewsFeedView, News
 
     @Override
     public void onNewsFeedItemClick(NewsFeedResponse response) {
-        Intent intent = new Intent(getActivity(), NewsFeedItemDetailsActivity.class);
+        Intent intent = new Intent(getActivity(), PostDetailsActivity.class);
         intent.putExtra("NewsFeedItem", response);
         startActivity(intent);
     }

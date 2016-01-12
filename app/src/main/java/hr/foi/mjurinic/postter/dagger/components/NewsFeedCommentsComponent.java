@@ -1,7 +1,7 @@
 package hr.foi.mjurinic.postter.dagger.components;
 
 import dagger.Component;
-import hr.foi.mjurinic.postter.activities.NewsFeedItemDetailsActivity;
+import hr.foi.mjurinic.postter.activities.PostDetailsActivity;
 import hr.foi.mjurinic.postter.dagger.modules.NetworkModule;
 import hr.foi.mjurinic.postter.dagger.modules.NewsFeedCommentsModule;
 
@@ -14,5 +14,5 @@ import hr.foi.mjurinic.postter.dagger.modules.NewsFeedCommentsModule;
 })
 public interface NewsFeedCommentsComponent {
 
-    void inject(NewsFeedItemDetailsActivity activity);
+    void inject(PostDetailsActivity activity);
 }

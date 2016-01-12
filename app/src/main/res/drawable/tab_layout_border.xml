@@ -2,9 +2,9 @@
 <layer-list
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:top="@dimen/separator_visible"
+        android:top="@dimen/separator_invisible"
         android:right="@dimen/separator_invisible"
-        android:bottom="@dimen/separator_invisible"
+        android:bottom="@dimen/separator_visible"
         android:left="@dimen/separator_invisible">
 
         <shape android:shape="rectangle">

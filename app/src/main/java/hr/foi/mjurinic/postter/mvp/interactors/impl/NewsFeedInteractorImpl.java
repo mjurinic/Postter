@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 import hr.foi.mjurinic.postter.listeners.Listener;
 import hr.foi.mjurinic.postter.listeners.NewsFeedListener;
-import hr.foi.mjurinic.postter.models.BaseNewsFeedResponse;
+import hr.foi.mjurinic.postter.models.BaseGetPostsResponse;
 import hr.foi.mjurinic.postter.models.BaseResponse;
 import hr.foi.mjurinic.postter.models.FollowingResponse;
 import hr.foi.mjurinic.postter.models.NewsFeedResponse;
@@ -28,8 +28,8 @@ public class NewsFeedInteractorImpl implements NewsFeedInteractor {
 
     private Call<BaseResponse<FollowingResponse>> followingResponseCall;
     private BaseCallback<BaseResponse<FollowingResponse>> followingResponseBaseCallback;
-    private Call<BaseNewsFeedResponse<NewsFeedResponse>> newsFeedResponseCall;
-    private BaseCallback<BaseNewsFeedResponse<NewsFeedResponse>> newsFeedResponseCallback;
+    private Call<BaseGetPostsResponse<NewsFeedResponse>> newsFeedResponseCall;
+    private BaseCallback<BaseGetPostsResponse<NewsFeedResponse>> newsFeedResponseCallback;
 
     @Inject
     public NewsFeedInteractorImpl(ApiService apiService) {
@@ -76,15 +76,15 @@ public class NewsFeedInteractorImpl implements NewsFeedInteractor {
         usernames = usernames.substring(0, usernames.length() -1 );
         newsFeedResponseCall = apiService.fetchNewsFeed(token.trim(), usernames);
 
-        newsFeedResponseCallback = new BaseCallback<BaseNewsFeedResponse<NewsFeedResponse>>() {
+        newsFeedResponseCallback = new BaseCallback<BaseGetPostsResponse<NewsFeedResponse>>() {
             @Override
             public void onUnknownError(@Nullable String error) {
                 listener.onFailure(error);
             }
 
             @Override
-            public void onSuccess(BaseNewsFeedResponse<NewsFeedResponse> body, Response<BaseNewsFeedResponse<NewsFeedResponse>> response) {
-                listener.onSuccess(body.getNewsFeedResponses());
+            public void onSuccess(BaseGetPostsResponse<NewsFeedResponse> body, Response<BaseGetPostsResponse<NewsFeedResponse>> response) {
+                listener.onSuccess(body.getPosts());
             }
         };
 

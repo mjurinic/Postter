@@ -1,8 +1,9 @@
 package hr.foi.mjurinic.postter.network;
 
-import hr.foi.mjurinic.postter.models.BaseNewsFeedResponse;
+import hr.foi.mjurinic.postter.models.BaseGetPostsResponse;
 import hr.foi.mjurinic.postter.models.BaseResponse;
 import hr.foi.mjurinic.postter.models.FollowingResponse;
+import hr.foi.mjurinic.postter.models.MyPostsResponse;
 import hr.foi.mjurinic.postter.models.NewsFeedCommentsResponse;
 import hr.foi.mjurinic.postter.models.NewsFeedResponse;
 import hr.foi.mjurinic.postter.models.BaseCouchResponse;
@@ -35,7 +36,7 @@ public interface ApiService {
     Call<BaseResponse<FollowingResponse>> fetchFollowers( @Header("Authorization") String token, @Query("key") String name);
 
     @GET("/tbp_europe/_design/designs/_list/with_comment_count/post_and_comments")
-    Call<BaseNewsFeedResponse<NewsFeedResponse>> fetchNewsFeed(@Header("Authorization") String token, @Query("following") String username);
+    Call<BaseGetPostsResponse<NewsFeedResponse>> fetchNewsFeed(@Header("Authorization") String token, @Query("following") String username);
 
     @PUT("/_users/org.couchdb.user:{name}")
     Call<BaseCouchResponse> registerUser(@Header("Authorization") String token, @Body User user, @Path("name") String name);
@@ -56,5 +57,8 @@ public interface ApiService {
     Call<BaseCouchResponse> postNewPost(@Header("Authorization") String token, @Body Post post);
 
     @GET("/tbp_europe/_design/designs/_list/filter_by_post_id/post_and_comments")
-    Call<BaseNewsFeedResponse<NewsFeedCommentsResponse>> fetchComments(@Header("Authorization") String token, @Query("post_id") String id);
+    Call<BaseGetPostsResponse<NewsFeedCommentsResponse>> fetchComments(@Header("Authorization") String token, @Query("post_id") String id);
+
+    @GET("/tbp_europe/_design/designs/_list/own_posts/posts")
+    Call<BaseGetPostsResponse<MyPostsResponse>> getMyPosts(@Header("Authorization") String token);
 }

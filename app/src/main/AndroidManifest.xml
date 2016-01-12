@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.MainActivity"/>
-        <activity android:name=".activities.NewsFeedItemDetailsActivity">
+        <activity android:name=".activities.PostDetailsActivity">
         </activity>
     </application>
 
