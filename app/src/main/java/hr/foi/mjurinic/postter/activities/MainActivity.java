@@ -46,17 +46,17 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     private void initFragmentList() {
         fragments = new ArrayList<>();
 
+        fragments.add(new MyPostsFragment());
         fragments.add(new NewsFeedFragment());
         fragments.add(new SearchFragment());
         fragments.add(new NewPostFragment());
-        fragments.add(new MyPostsFragment());
     }
 
     private void initTabs() {
+        mainTabLayout.addTab(mainTabLayout.newTab().setText("My Posts"));
         mainTabLayout.addTab(mainTabLayout.newTab().setText("Feed"));
         mainTabLayout.addTab(mainTabLayout.newTab().setText("Search"));
         mainTabLayout.addTab(mainTabLayout.newTab().setText("Compose"));
-        mainTabLayout.addTab(mainTabLayout.newTab().setText("My Posts"));
 //        mainTabLayout.addTab(mainTabLayout.newTab().setText("Trending"));
     }
 

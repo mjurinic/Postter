@@ -2,6 +2,8 @@ package hr.foi.mjurinic.postter.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.joda.time.DateTime;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -23,7 +25,7 @@ public class NewsFeedResponse implements Serializable {
     private String body;
 
     @SerializedName("created_at")
-    private String createdAt;
+    private DateTime createdAt;
 
     @SerializedName("tags")
     private ArrayList<String> tags;
@@ -55,11 +57,11 @@ public class NewsFeedResponse implements Serializable {
         this.body = body;
     }
 
-    public String getCreatedAt() {
+    public DateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(DateTime createdAt) {
         this.createdAt = createdAt;
     }
 

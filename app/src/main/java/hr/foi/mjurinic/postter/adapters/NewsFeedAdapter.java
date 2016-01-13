@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import hr.foi.mjurinic.postter.R;
+import hr.foi.mjurinic.postter.helpers.TimeElapsedHelper;
 import hr.foi.mjurinic.postter.listeners.NewsFeedClickListener;
 import hr.foi.mjurinic.postter.models.NewsFeedResponse;
 
@@ -20,9 +21,7 @@ import hr.foi.mjurinic.postter.models.NewsFeedResponse;
  */
 public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.ViewHolder> {
 
-
     private ArrayList<NewsFeedResponse> newsFeedResponses;
-
     private NewsFeedClickListener newsFeedClickListener;
 
     public NewsFeedAdapter(ArrayList<NewsFeedResponse> newsFeedResponses, NewsFeedClickListener newsFeedClickListener) {
@@ -38,14 +37,9 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.fullName.setText(newsFeedResponses.get(position).getFullName());
-
-        holder.commentsCount.setText(newsFeedResponses.get(position).getCommentsCount() + "");
-
-        String nick = "@" + newsFeedResponses.get(position).getAuthor();
-        holder.nick.setText(nick);
-
-        holder.createdAt.setText(newsFeedResponses.get(position).getCreatedAt());
-
+        holder.commentsCount.setText(newsFeedResponses.get(position).getCommentsCount() + " comments");
+        holder.nick.setText("@" + newsFeedResponses.get(position).getAuthor());
+        holder.createdAt.setText(TimeElapsedHelper.CalculateTime(newsFeedResponses.get(position).getCreatedAt()));
         holder.description.setText(newsFeedResponses.get(position).getBody());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

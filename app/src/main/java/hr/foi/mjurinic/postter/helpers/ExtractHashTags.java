@@ -9,8 +9,10 @@ import java.util.regex.Pattern;
  */
 public final class ExtractHashTags {
 
+    public static final String REGEX = "#(\\w+|\\W+)";
+
     public static ArrayList<String> getHashTags(String body) {
-        Pattern PATTERN = Pattern.compile("#(\\w+|\\W+)");
+        Pattern PATTERN = Pattern.compile(REGEX);
         Matcher matcher = PATTERN.matcher(body);
         ArrayList<String> ret = new ArrayList<>();
 

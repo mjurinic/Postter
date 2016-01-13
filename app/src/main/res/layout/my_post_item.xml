@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_post_item_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="@dimen/micro_spacing"
@@ -24,10 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_spacing"
         android:layout_toRightOf="@+id/my_post_avatar"
-        android:paddingBottom="@dimen/no_spacing"
         android:paddingLeft="@dimen/micro_spacing"
         android:paddingRight="@dimen/micro_spacing"
-        android:paddingTop="@dimen/micro_spacing"
         tools:text="Mislav Juuuur" />
 
     <TextView
@@ -36,7 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="@dimen/default_spacing"
-        android:padding="@dimen/micro_spacing"
+        android:paddingLeft="@dimen/micro_spacing"
+        android:paddingRight="@dimen/micro_spacing"
         tools:text="20 mins ago" />
 
     <TextView

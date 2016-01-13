@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import hr.foi.mjurinic.postter.R;
+import hr.foi.mjurinic.postter.helpers.TimeElapsedHelper;
 import hr.foi.mjurinic.postter.models.MyPostsResponse;
 
 /**
@@ -33,9 +35,9 @@ public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.ViewHold
     @Override
     public void onBindViewHolder(MyPostsAdapter.ViewHolder holder, int position) {
         holder.fullName.setText(posts.get(position).getPost().getFullName());
-        holder.nick.setText(posts.get(position).getPost().getAuthor());
+        holder.nick.setText('@' + posts.get(position).getPost().getAuthor());
         holder.body.setText(posts.get(position).getPost().getBody());
-        holder.createdAt.setText(posts.get(position).getPost().getCreatedAt().toString());
+        holder.createdAt.setText(TimeElapsedHelper.CalculateTime(posts.get(position).getPost().getCreatedAt()));
     }
 
     @Override
@@ -50,6 +52,9 @@ public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        @Bind(R.id.my_post_item_layout)
+        RelativeLayout layout;
 
         @Bind(R.id.my_post_avatar)
         ImageView avatar;
