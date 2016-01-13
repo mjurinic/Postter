@@ -11,6 +11,8 @@ import hr.foi.mjurinic.postter.models.Post;
 import hr.foi.mjurinic.postter.models.Relationship;
 import hr.foi.mjurinic.postter.models.SecurityDoc;
 import hr.foi.mjurinic.postter.models.Session;
+import hr.foi.mjurinic.postter.models.Trending;
+import hr.foi.mjurinic.postter.models.TrendingResponse;
 import hr.foi.mjurinic.postter.models.User;
 import hr.foi.mjurinic.postter.models.UserCredentials;
 
@@ -67,4 +69,7 @@ public interface ApiService {
 
     @GET("/tbp_europe/_design/designs/_list/own_posts/posts")
     Call<BaseGetPostsResponse<MyPostsResponse>> getMyPosts(@Header("Authorization") String token);
+
+    @GET("/tbp_europe/_design/designs/_view/tags?group_level=1")
+    Call<TrendingResponse> getTrending(@Header("Authorization") String token);
 }

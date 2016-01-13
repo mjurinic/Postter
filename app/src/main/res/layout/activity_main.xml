@@ -29,6 +29,6 @@
         android:layout_margin="@dimen/default_spacing"
         android:clickable="true"
         android:src="@mipmap/compose"
-        app:backgroundTint="@android:color/holo_orange_light" />
+        app:backgroundTint="@color/colorAccent" />
 
 </RelativeLayout>

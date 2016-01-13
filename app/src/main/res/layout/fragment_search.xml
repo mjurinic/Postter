@@ -8,7 +8,8 @@
     <EditText
         android:id="@+id/et_search_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint="Example: mjurinic" />
 
     <Button
         android:layout_below="@id/et_search_name"
@@ -17,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_gravity="right"
+        android:background="@color/colorAccent"
         android:text="Search" />
 
     <TextView
