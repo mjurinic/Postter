@@ -7,6 +7,8 @@ import android.util.Base64;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.inject.Inject;
 
@@ -50,6 +52,14 @@ public class NewsFeedCommentsPresenterImpl implements NewsFeedCommentsPresenter 
         @Override
         public void onSuccess(ArrayList<NewsFeedCommentsResponse> responseArrayList) {
             view.hideProgress();
+
+            Collections.sort(responseArrayList, new Comparator<NewsFeedCommentsResponse>() {
+                @Override
+                public int compare(NewsFeedCommentsResponse lhs, NewsFeedCommentsResponse rhs) {
+                    return lhs.getCreatedAt().compareTo(rhs.getCreatedAt());
+                }
+            });
+
             view.onSuccess(responseArrayList);
         }
 

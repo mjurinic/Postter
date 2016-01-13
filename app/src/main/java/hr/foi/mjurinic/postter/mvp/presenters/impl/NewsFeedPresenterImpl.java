@@ -5,6 +5,8 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.inject.Inject;
 
@@ -74,6 +76,9 @@ public class NewsFeedPresenterImpl implements NewsFeedPresenter {
                 String[] usernames = followingResponse.getFollowing().get(i).split(":");
                 users.add(usernames[1]);
             }
+
+            users.add(cacheInteractor.getUser().getName());
+
             view.onFollowersFetched(followingResponse);
         }
 
@@ -86,6 +91,13 @@ public class NewsFeedPresenterImpl implements NewsFeedPresenter {
     private NewsFeedListener<NewsFeedResponse> newsFeedResponseListener = new NewsFeedListener<NewsFeedResponse>() {
         @Override
         public void onSuccess(ArrayList<NewsFeedResponse> newsFeedResponses) {
+            Collections.sort(newsFeedResponses, new Comparator<NewsFeedResponse>() {
+                @Override
+                public int compare(NewsFeedResponse lhs, NewsFeedResponse rhs) {
+                    return rhs.getCreatedAt().compareTo(lhs.getCreatedAt());
+                }
+            });
+
             view.onNewsFeedFetched(newsFeedResponses);
         }
 

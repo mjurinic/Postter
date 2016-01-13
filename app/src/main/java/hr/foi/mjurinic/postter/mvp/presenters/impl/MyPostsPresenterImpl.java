@@ -5,6 +5,8 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.inject.Inject;
 
@@ -39,6 +41,14 @@ public class MyPostsPresenterImpl implements MyPostsPresenter, Listener<ArrayLis
     @Override
     public void onSuccess(ArrayList<MyPostsResponse> myPostsResponses) {
         myPostsView.hideProgress();
+
+        Collections.sort(myPostsResponses, new Comparator<MyPostsResponse>() {
+            @Override
+            public int compare(MyPostsResponse lhs, MyPostsResponse rhs) {
+                return rhs.getPost().getCreatedAt().compareTo(lhs.getPost().getCreatedAt());
+            }
+        });
+
         myPostsView.onSuccess(myPostsResponses);
     }
 
