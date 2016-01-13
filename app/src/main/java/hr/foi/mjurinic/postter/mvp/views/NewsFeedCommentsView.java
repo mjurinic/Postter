@@ -8,7 +8,9 @@ import hr.foi.mjurinic.postter.models.NewsFeedCommentsResponse;
 /**
  * Created by mjurinic on 06.01.16..
  */
-public interface NewsFeedCommentsView {
+public interface NewsFeedCommentsView extends BaseView {
+
+    void onSuccessfulPost(Comments comment);
 
     void onSuccess(ArrayList<NewsFeedCommentsResponse> commentsArrayList);
 

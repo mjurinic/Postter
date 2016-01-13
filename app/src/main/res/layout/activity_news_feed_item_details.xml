@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.PostDetailsActivity">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/comments_swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.PostDetailsActivity">
+        android:layout_weight="1" >
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/news_feed_comments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <EditText
+            android:id="@+id/et_new_comment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/new_comment_border"
+            android:hint="Enter comment"
+            android:paddingLeft="@dimen/micro_spacing"
+            android:paddingRight="70dp" />
+
+        <Button
+            android:id="@+id/btn_send_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/news_feed_comments"/>
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/micro_spacing"
+            android:text="Send" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

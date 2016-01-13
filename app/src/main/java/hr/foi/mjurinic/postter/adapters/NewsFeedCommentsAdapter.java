@@ -18,10 +18,10 @@ import hr.foi.mjurinic.postter.models.Comments;
  */
 public class NewsFeedCommentsAdapter extends RecyclerView.Adapter<NewsFeedCommentsAdapter.ViewHolder> {
 
-    private ArrayList<Comments> newsFeedCommentsResponse;
+    private ArrayList<Comments> comments;
 
-    public NewsFeedCommentsAdapter(ArrayList<Comments> newsFeedCommentsResponse) {
-        this.newsFeedCommentsResponse = newsFeedCommentsResponse;
+    public NewsFeedCommentsAdapter(ArrayList<Comments> comments) {
+        this.comments = comments;
     }
 
     @Override
@@ -31,14 +31,25 @@ public class NewsFeedCommentsAdapter extends RecyclerView.Adapter<NewsFeedCommen
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.commentAuthor.setText(newsFeedCommentsResponse.get(position).getAuthor());
-        holder.commentContent.setText(newsFeedCommentsResponse.get(position).getBody());
-        holder.commentTime.setText(newsFeedCommentsResponse.get(position).getCreatedAt());
+        holder.commentAuthor.setText('@' + comments.get(position).getAuthor());
+        holder.commentContent.setText(comments.get(position).getBody());
+        holder.commentTime.setText(comments.get(position).getCreatedAt().toString());
     }
 
     @Override
     public int getItemCount() {
-        return newsFeedCommentsResponse.size();
+        return comments.size();
+    }
+
+    public void appendComment(Comments comment) {
+        comments.add(comment);
+        notifyDataSetChanged();
+    }
+
+    public void refresh(ArrayList<Comments> comments) {
+        this.comments.clear();
+        this.comments.addAll(comments);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -46,10 +57,10 @@ public class NewsFeedCommentsAdapter extends RecyclerView.Adapter<NewsFeedCommen
         @Bind(R.id.comment_author)
         TextView commentAuthor;
 
-        @Bind(R.id.comment_time)
+        @Bind(R.id.comment_created_at)
         TextView commentTime;
 
-        @Bind(R.id.comment_content)
+        @Bind(R.id.comment_body)
         TextView commentContent;
 
         public ViewHolder(View itemView) {

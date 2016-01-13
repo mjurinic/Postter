@@ -40,7 +40,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         mainViewPager.setAdapter(adapter);
         mainViewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mainTabLayout));
         mainTabLayout.setOnTabSelectedListener(this);
-
     }
 
     private void initFragmentList() {

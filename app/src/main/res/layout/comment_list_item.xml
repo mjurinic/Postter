@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/micro_spacing"
+    android:layout_marginRight="@dimen/micro_spacing"
+    android:layout_marginTop="@dimen/micro_spacing"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/micro_spacing">
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:id="@+id/comment_author"
-              android:padding="@dimen/default_spacing"
-              android:textStyle="bold"
-              tools:text="Mjurinic"/>
+    <TextView
+        android:id="@+id/comment_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/nano_spacing"
+        android:textColor="@android:color/holo_blue_light"
+        tools:text="\@mjurinic" />
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:id="@+id/comment_time"
-              android:paddingLeft="@dimen/default_spacing"
-              tools:text="25.05.1993"/>
+    <TextView
+        android:id="@+id/comment_created_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/micro_spacing"
+        tools:text="2016-01-03 15:32:01" />
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:id="@+id/comment_content"
-              android:padding="@dimen/default_spacing"
-              tools:text="Ja sam mali deckic"/>
-
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:padding="@dimen/default_spacing"
-              android:text="----------------------------------------------"/>
+    <TextView
+        android:id="@+id/comment_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Comment body..." />
 
 </LinearLayout>

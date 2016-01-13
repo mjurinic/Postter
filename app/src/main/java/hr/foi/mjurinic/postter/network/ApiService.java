@@ -50,11 +50,17 @@ public interface ApiService {
     @GET("/_users/org.couchdb.user:{name}")
     Call<User> getUser(@Header("Authorization") String token, @Path("name") String name);
 
+    // merge it
     @POST("/tbp_europe/")
     Call<BaseCouchResponse> putNewFollow(@Header("Authorization") String token, @Body Relationship relationship);
 
+    // merge it
     @POST("/tbp_europe/")
     Call<BaseCouchResponse> postNewPost(@Header("Authorization") String token, @Body Post post);
+
+    // merge it
+    @POST("/tbp_europe/")
+    Call<BaseCouchResponse> postNewDoc(@Header("Authorization") String token, @Body Object body);
 
     @GET("/tbp_europe/_design/designs/_list/filter_by_post_id/post_and_comments")
     Call<BaseGetPostsResponse<NewsFeedCommentsResponse>> fetchComments(@Header("Authorization") String token, @Query("post_id") String id);
