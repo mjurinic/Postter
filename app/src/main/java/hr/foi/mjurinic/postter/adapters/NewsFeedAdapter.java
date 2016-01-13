@@ -21,11 +21,11 @@ import hr.foi.mjurinic.postter.models.NewsFeedResponse;
  */
 public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.ViewHolder> {
 
-    private ArrayList<NewsFeedResponse> newsFeedResponses;
+    private ArrayList<NewsFeedResponse> posts;
     private NewsFeedClickListener newsFeedClickListener;
 
-    public NewsFeedAdapter(ArrayList<NewsFeedResponse> newsFeedResponses, NewsFeedClickListener newsFeedClickListener) {
-        this.newsFeedResponses = newsFeedResponses;
+    public NewsFeedAdapter(ArrayList<NewsFeedResponse> posts, NewsFeedClickListener newsFeedClickListener) {
+        this.posts = posts;
         this.newsFeedClickListener = newsFeedClickListener;
     }
 
@@ -36,23 +36,29 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.fullName.setText(newsFeedResponses.get(position).getFullName());
-        holder.commentsCount.setText(newsFeedResponses.get(position).getCommentsCount() + " comments");
-        holder.nick.setText("@" + newsFeedResponses.get(position).getAuthor());
-        holder.createdAt.setText(TimeElapsedHelper.CalculateTime(newsFeedResponses.get(position).getCreatedAt()));
-        holder.description.setText(newsFeedResponses.get(position).getBody());
+        holder.fullName.setText(posts.get(position).getFullName());
+        holder.commentsCount.setText(posts.get(position).getCommentsCount() + " comments");
+        holder.nick.setText("@" + posts.get(position).getAuthor());
+        holder.createdAt.setText(TimeElapsedHelper.CalculateTime(posts.get(position).getCreatedAt()));
+        holder.description.setText(posts.get(position).getBody());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newsFeedClickListener.onNewsFeedItemClick(newsFeedResponses.get(position));
+                newsFeedClickListener.onNewsFeedItemClick(posts.get(position));
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return newsFeedResponses.size();
+        return posts.size();
+    }
+
+    public void refresh(ArrayList<NewsFeedResponse> posts) {
+        this.posts.clear();
+        this.posts.addAll(posts);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

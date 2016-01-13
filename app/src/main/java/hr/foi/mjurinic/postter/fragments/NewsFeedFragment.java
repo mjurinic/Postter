@@ -3,6 +3,7 @@ package hr.foi.mjurinic.postter.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -37,7 +38,13 @@ public class NewsFeedFragment extends BaseFragment implements NewsFeedView, News
     NewsFeedPresenter presenter;
 
     @Bind(R.id.news_feed_recyclerview)
-    RecyclerView newsFeedRecyclerview;
+    RecyclerView recyclerView;
+
+    @Bind(R.id.news_feed_swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
+    private NewsFeedAdapter adapter;
+    private boolean isRefreshed;
 
     @Nullable
     @Override
@@ -50,17 +57,45 @@ public class NewsFeedFragment extends BaseFragment implements NewsFeedView, News
                 .build()
                 .inject(this);
 
+        init();
+
+        this.showProgress();
         presenter.fetchFollowers(getActivity());
-
-        newsFeedRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-
 
         return view;
     }
 
+    private void init() {
+        swipeRefreshLayout.setColorSchemeColors(R.color.colorPrimary);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                isRefreshed = true;
+                presenter.fetchNewsFeed();
+            }
+        });
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    private void initAdapter(ArrayList<NewsFeedResponse> posts) {
+        adapter = new NewsFeedAdapter(posts, this);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void refreshAdapter(ArrayList<NewsFeedResponse> posts) {
+        if (adapter != null) {
+            isRefreshed = false;
+
+            adapter.refresh(posts);
+
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    }
+
     @Override
     public void onFollowersFetched(FollowingResponse followingResponses) {
-        Log.e("Followers", "FETCHED");
         presenter.fetchNewsFeed();
     }
 
@@ -70,15 +105,19 @@ public class NewsFeedFragment extends BaseFragment implements NewsFeedView, News
     }
 
     @Override
-    public void onNewsFeedFetched(ArrayList<NewsFeedResponse> newsFeedResponse) {
+    public void onNewsFeedFetched(ArrayList<NewsFeedResponse> posts) {
+        this.hideProgress();
 
-        newsFeedRecyclerview.setAdapter(new NewsFeedAdapter(newsFeedResponse, this));
+        if (isRefreshed) {
+            refreshAdapter(posts);
+        } else {
+            initAdapter(posts);
+        }
     }
 
     @Override
     public void onNewsFeedError(String error) {
         Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
-        Log.e("Error", error);
     }
 
     @Override

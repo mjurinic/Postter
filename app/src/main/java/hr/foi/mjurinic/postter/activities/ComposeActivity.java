@@ -1,9 +1,7 @@
-package hr.foi.mjurinic.postter.fragments;
+package hr.foi.mjurinic.postter.activities;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,10 +16,7 @@ import hr.foi.mjurinic.postter.dagger.modules.NewPostModule;
 import hr.foi.mjurinic.postter.mvp.presenters.NewPostPresenter;
 import hr.foi.mjurinic.postter.mvp.views.NewPostView;
 
-/**
- * Created by mjurinic on 06.01.16..
- */
-public class NewPostFragment extends BaseFragment implements NewPostView {
+public class ComposeActivity extends BaseActivity implements NewPostView {
 
     @Bind(R.id.et_post_body)
     EditText postBody;
@@ -30,30 +25,41 @@ public class NewPostFragment extends BaseFragment implements NewPostView {
     NewPostPresenter postPresenter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_new_post, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_compose);
 
-        ButterKnife.bind(this, view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ButterKnife.bind(this);
 
         DaggerNewPostComponent.builder()
                 .newPostModule(new NewPostModule(this))
                 .build()
                 .inject(this);
-
-        return view;
     }
 
     @OnClick(R.id.btn_new_post)
     public void onPostButtonClick() {
-        String body = postBody.getText().toString();
-
-        postPresenter.createPost(body);
+        postPresenter.createPost(postBody.getText().toString());
     }
 
     @Override
     public void onSuccess() {
         postBody.setText("");
+        Toast.makeText(this, "New post created!", Toast.LENGTH_SHORT).show();
+    }
 
-        Toast.makeText(getActivity(), "New post created!", Toast.LENGTH_SHORT).show();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }
