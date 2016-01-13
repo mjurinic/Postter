@@ -36,7 +36,8 @@ public class Post implements Serializable {
     @SerializedName("active")
     private boolean active;
 
-    public Post(String author, String body, ArrayList<String> tags) {
+    public Post(String fullName, String author, String body, ArrayList<String> tags) {
+        this.fullName = fullName;
         this.author = author;
         this.body = body;
         this.tags = tags;

@@ -4,6 +4,7 @@ import dagger.Component;
 import hr.foi.mjurinic.postter.dagger.modules.CacheModule;
 import hr.foi.mjurinic.postter.dagger.modules.LoginModule;
 import hr.foi.mjurinic.postter.dagger.modules.NetworkModule;
+import hr.foi.mjurinic.postter.dagger.modules.SearchModule;
 import hr.foi.mjurinic.postter.fragments.LoginFragment;
 
 /**
@@ -12,6 +13,7 @@ import hr.foi.mjurinic.postter.fragments.LoginFragment;
 @Component(modules = {
         NetworkModule.class,
         CacheModule.class,
+        SearchModule.class,
         LoginModule.class
 })
 public interface LoginComponent {

@@ -6,4 +6,6 @@ package hr.foi.mjurinic.postter.mvp.presenters;
 public interface LoginPresenter extends BasePresenter {
 
     void onLoginClick(String username, String password);
+
+    void getUser(String name);
 }

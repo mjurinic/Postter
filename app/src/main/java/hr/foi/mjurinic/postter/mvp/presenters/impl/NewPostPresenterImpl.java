@@ -1,9 +1,5 @@
 package hr.foi.mjurinic.postter.mvp.presenters.impl;
 
-import android.content.Context;
-import android.preference.PreferenceManager;
-import android.util.Base64;
-
 import javax.inject.Inject;
 
 import hr.foi.mjurinic.postter.helpers.ExtractHashTags;
@@ -23,21 +19,23 @@ public class NewPostPresenterImpl implements NewPostPresenter, Listener<BaseCouc
     private NewPostView newPostView;
     private NewPostInteractor newPostInteractor;
     private CacheInteractor cacheInteractor;
-    private String token = "Basic ";
+    private String token;
 
     @Inject
-    public NewPostPresenterImpl(NewPostView newPostView, NewPostInteractor newPostInteractor, CacheInteractor cacheInteractor, Context context) {
+    public NewPostPresenterImpl(NewPostView newPostView, NewPostInteractor newPostInteractor, CacheInteractor cacheInteractor) {
         this.newPostView = newPostView;
         this.newPostInteractor = newPostInteractor;
         this.cacheInteractor = cacheInteractor;
 
-        token += Base64.encodeToString(PreferenceManager.getDefaultSharedPreferences(context).getString("BasicAuth", "").getBytes(), Base64.DEFAULT);
+        token = cacheInteractor.getUser().getToken();
     }
 
     @Override
     public void createPost(String body) {
+        String fullName = cacheInteractor.getUser().getFirstName() + ' ' + cacheInteractor.getUser().getLastName();
         String author = cacheInteractor.getUser().getName();
-        Post post = new Post(author, body, ExtractHashTags.getHashTags(body));
+
+        Post post = new Post(fullName, author, body, ExtractHashTags.getHashTags(body));
 
         newPostInteractor.postNewPost(token.trim(), post, this);
     }
